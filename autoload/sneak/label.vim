@@ -90,7 +90,9 @@ func! s:do_label(s, v, reverse, label, flip_next_labels_keys) abort "{{{
 
     if i < s:maxmarks
       let c = s:strchar(g:sneak#target_labels, i)
-      call s:placematch(c, p)
+      let inputlen = strlen(a:s._input)
+      let end_col = p[1] + inputlen - 1
+      call s:placematch(c, [p[0], end_col])
     else  " We have exhausted the target labels; grab the first non-labeled match.
       let overflow = p
       break
