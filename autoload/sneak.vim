@@ -243,8 +243,11 @@ func! sneak#to(op, input, inputlen, count, register, repeatmotion, reverse, incl
     endif
   endif
 
-  if is_op || '' != target
+  if is_op || -1 != index(["\<Esc>", "\<C-c>"], target)
     call sneak#util#removehl()
+  elseif '' != target
+    silent! call matchdelete(w:sneak_hl_id)
+    silent! call matchdelete(w:sneak_scope_hl)
   endif
 
   if is_op && a:op !=# 'y'
