@@ -734,7 +734,7 @@ Execute (cleanup):
   silent! xunmap T
 
 ############################################################
-# Label-mode <Tab>/<BS> when running out of labels
+# Label-mode <Space>/<BS> when running out of labels
 
 Given:
   A11111111111111111111111111111111111111111111111111111K
@@ -749,7 +749,7 @@ Given:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels):
-  4j9ls22\<Tab>\<Tab>fr-
+  4j9ls22\<Space>\<Space>fr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B22222222222222222222222222222222222222222222222222222L
@@ -763,7 +763,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels, change direction):
-  4j9ls22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+  4j9ls22\<Space>\<Space>\<BS>\<BS>\<BS>\<BS>Rr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B222222222222222222222222-2222222222222222222222222222L
@@ -777,7 +777,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels, change direction, repeat):
-  4j9ldz22\<Tab>\<BS>\<BS>N
+  4j9ldz22\<Space>\<BS>\<BS>N
   :\<C-U>doautocmd CursorMoved\<CR>
   .
 Expect:
@@ -790,7 +790,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels backwards):
-  4j9lS22\<Tab>\<Tab>fr-
+  4j9lS22\<Space>\<Space>fr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B2222-222222222222222222222222222222222222222222222222L
@@ -804,7 +804,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels backwards, change direction):
-  4j9lS22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+  4j9lS22\<Space>\<Space>\<BS>\<BS>\<BS>\<BS>Rr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B22222222222222222222222222222222222222222222222222222L
@@ -818,7 +818,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels backwards, change direction, repeat):
-  4j9ldZ22\<Tab>\<BS>\<BS>N
+  4j9ldZ22\<Space>\<BS>\<BS>N
   :\<C-U>doautocmd CursorMoved\<CR>
   .
 Expect:
@@ -835,7 +835,7 @@ Execute (turn on g:sneak#absolute_dir):
   call SneakReset()
 
 Do (next labels absolute_dir):
-  4j9ls22\<Tab>\<Tab>fr-
+  4j9ls22\<Space>\<Space>fr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B22222222222222222222222222222222222222222222222222222L
@@ -849,7 +849,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels absolute_dir, change direction):
-  4j9ls22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+  4j9ls22\<Space>\<Space>\<BS>\<BS>\<BS>\<BS>Rr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B222222222222222222222222-2222222222222222222222222222L
@@ -863,7 +863,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels absolute_dir, change direction, repeat):
-  4j9ldz22\<Tab>\<BS>\<BS>N
+  4j9ldz22\<Space>\<BS>\<BS>N
   :\<C-U>doautocmd CursorMoved\<CR>
   .
 Expect:
@@ -876,7 +876,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels absolute_dir backwards):
-  4j9lS22\<Tab>\<Tab>fr-
+  4j9lS22\<Space>\<Space>fr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B22222222222222222222222222222222222222222222222222222L
@@ -890,7 +890,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels absolute_dir backwards, change direction):
-  4j9lS22\<Tab>\<Tab>\<BS>\<BS>\<BS>Rr-
+  4j9lS22\<Space>\<Space>\<BS>\<BS>\<BS>Rr-
 Expect:
   A11111111111111111111111111111111111111111111111111111K
   B2222222222222222222222-222222222222222222222222222222L
@@ -904,7 +904,7 @@ Expect:
   J22222222222222222222222222222222222222222222222222222T
 
 Do (next labels absolute_dir backwards, change direction, repeat):
-  4j9ldZ22\<Tab>\<BS>N
+  4j9ldZ22\<Space>\<BS>N
   :\<C-U>doautocmd CursorMoved\<CR>
   .
 Expect:

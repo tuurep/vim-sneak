@@ -60,9 +60,9 @@ func! sneak#label#to(s, v, label) abort
   while 1
     let choice = s:do_label(a:s, a:v, a:s._reverse, a:label, flip_next_labels_keys)
     let seq .= choice
-    if choice =~# "^\<S-Tab>\\|\<BS>$"
+    if choice =~# "\<BS>"
       call a:s.init(a:s._input, a:s._repeatmotion, flip_next_labels_keys ? 0 : 1)
-    elseif choice ==# "\<Tab>"
+    elseif choice ==# "\<Space>"
       call a:s.init(a:s._input, a:s._repeatmotion, flip_next_labels_keys ? 1 : 0)
     else
       return seq
@@ -108,13 +108,13 @@ func! s:do_label(s, v, reverse, label, flip_next_labels_keys) abort "{{{
         \ ? mappedto =~# '<Plug>Sneak\(_,\|Previous\)'
         \ : mappedto =~# '<Plug>Sneak\(_;\|Next\)'
 
-  if choice =~# "\\v^\<Tab>|\<S-Tab>|\<BS>$"  " Decorate next N matches.
+  if choice =~# "\\v^\<Space>|\<BS>$"  " Decorate next N matches.
     if a:flip_next_labels_keys
-      if (a:reverse && choice ==# "\<Tab>") || (!a:reverse && choice =~# "^\<S-Tab>\\|\<BS>$")
+      if (a:reverse && choice ==# "\<Space>") || (!a:reverse && choice =~# "\<BS>")
         call cursor(overflow[0], overflow[1])
       endif
     else
-      if (!a:reverse && choice ==# "\<Tab>") || (a:reverse && choice =~# "^\<S-Tab>\\|\<BS>$")
+      if (!a:reverse && choice ==# "\<Space>") || (a:reverse && choice =~# "\<BS>")
         call cursor(overflow[0], overflow[1])
       endif
     endif  " ...else we just switched directions, do not overflow.

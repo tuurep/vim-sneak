@@ -86,9 +86,9 @@ VISUAL-MODE~
 LABEL-MODE~
     Key Sequence             | Description
     -------------------------|----------------------------------------------
-    <Space> or <Esc>         | Exit |sneak-label-mode| where the cursor is.
-    <Tab>                    | Label the next set of matches.
-    <BS> or <S-Tab>          | Label the previous set of matches.
+    <Esc>                    | Exit |sneak-label-mode| where the cursor is.
+    <Space>                  | Label the next set of matches.
+    <BS>                     | Label the previous set of matches.
 
 ------------------------------------------------------------------------------
 CUSTOM MAPPINGS                                         *sneak-custom-mappings*
@@ -228,9 +228,9 @@ Label-mode features:
 - Jump to a label by typing its character.              *sneak-fallthrough*
 - Non-label keys "fall through" to normal-mode, so you don't need to
   explicitly exit label-mode if the first match is correct.
-- <Tab> skips to the next set of matches (<BS>, <S-Tab> go the other way).
+- <Space> skips to the next set of matches (<BS> goes the other way).
   These actions are preserved with dot-repeat.
-- <Space> or <Esc> exits label-mode. |g:sneak#label_esc|
+- <Esc> exits label-mode. |g:sneak#label_esc|
 - |folds| are skipped (not labeled). Use |;| and |,| to reach folded or
   off-screen matches.
 
@@ -320,7 +320,7 @@ g:sneak#label = 0
 
     1: Enable |sneak-label-mode| if the Vim |+conceal| feature is available.
 
-g:sneak#label_esc = "\<Space>"                          *g:sneak#label_esc*
+g:sneak#label_esc = ""                                  *g:sneak#label_esc*
 
     Exit |sneak-label-mode| as if <Esc> were pressed.
         https://github.com/justinmk/vim-sneak/issues/122
