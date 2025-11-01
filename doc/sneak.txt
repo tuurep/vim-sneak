@@ -448,8 +448,8 @@ sneak#is_sneaking()                                     *sneak#is_sneaking()*
             https://github.com/justinmk/vim-sneak/pull/93
 
 sneak#cancel()                                          *sneak#cancel()*
-        Deactivates Sneak: removes autocmds/highlighting and causes
-        |sneak#is_sneaking()| to return 0.
+        Deactivates Sneak: removes autocmds and causes |sneak#is_sneaking()|
+        to return 0.
             https://github.com/justinmk/vim-sneak/issues/106
 
 sneak#reset(key)                                        *sneak#reset()*
