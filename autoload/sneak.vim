@@ -20,7 +20,6 @@ func! sneak#is_sneaking() abort
 endf
 
 func! sneak#cancel() abort
-  call sneak#util#removehl()
   augroup sneak
     autocmd!
   augroup END
@@ -41,9 +40,13 @@ func! sneak#wrap(op, inputlen, reverse, inclusive, label) abort
     let [cnt, reg] = [v:count1, v:register] "get count and register before doing _anything_, else they get overwritten.
     let is_similar_invocation = a:inputlen == s:st.inputlen && a:inclusive == s:st.inclusive
 
+    " Todo: kinda redundant with the addition at the end:
+    " Now we have direct knowledge that we repeated sneak at the relevant point
+    " Add an argument or something?
     if g:sneak_opt.s_next && is_similar_invocation && (sneak#util#isvisualop(a:op) || empty(a:op)) && sneak#is_sneaking()
       " Repeat motion (clever-s).
       call sneak#rpt(a:op, a:reverse)
+
     elseif a:op ==# 'g@' && !empty(s:st.opfunc_st) && !empty(s:st.opfunc) && s:st.opfunc ==# &operatorfunc
       " Replay state from the last 'operatorfunc'.
       call sneak#to(a:op, s:st.opfunc_st.input, s:st.opfunc_st.inputlen, cnt, reg, 1, s:st.opfunc_st.reverse, s:st.opfunc_st.inclusive, s:st.opfunc_st.label)
@@ -58,6 +61,22 @@ func! sneak#wrap(op, inputlen, reverse, inclusive, label) abort
         doautocmd <nomodeline> User SneakLeave
       endif
     endif
+
+    " Experimental early highlight clear: e.g. when doing `diw` on a sneak match,
+    " clears on the initial `d` press instead of at the end of `diw`
+    let is_v = sneak#util#isvisualop(a:op)
+    if sneak#is_sneaking() && (is_v || empty(a:op))
+      redraw
+      let nextkey = sneak#util#getc()
+      let mappedto = maparg(nextkey, is_v ? 'x' : 'n')
+      let sneak_next = mappedto =~# '<Plug>Sneak\(_;\|_,\|Next\|Previous\)'
+      let clever_s = g:sneak_opt.s_next && mappedto =~# '<Plug>Sneak\(_s\|_S\)'
+      if !(sneak_next || clever_s)
+        call sneak#util#removehl()
+      endif
+      call feedkeys(nextkey) " Note: breaks macros and tests (40 tests broken)
+    endif
+
   finally
     let &cmdheight = save_cmdheight
   endtry

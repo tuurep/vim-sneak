@@ -16,6 +16,11 @@
 # ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
 # ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
 
+# experimental-hl-tweaks branch:
+# The fact that feedkeys() is used in sneak#wrap breaks 40 tests
+# Also, it makes sneak even more unusable in macros
+# See comment on line 608
+
 Execute (Clean up test environment):
   if !has('nvim')
     set encoding=utf8

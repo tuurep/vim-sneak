@@ -122,7 +122,6 @@ func! s:do_label(s, v, reverse, label, flip_next_labels_keys) abort "{{{
         \ || -1 != index(["\<Esc>", "\<C-c>"], choice)
     return "\<Esc>"  " Exit label-mode.
   elseif !mappedtoNext && !has_key(s:matchmap, choice)  " Fallthrough: press _any_ invalid key to escape.
-    call sneak#util#removehl()
     call feedkeys(choice)  " Exit label-mode, fall through to Vim.
     return ""
   else  " Valid target was selected.
