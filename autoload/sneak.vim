@@ -226,7 +226,7 @@ func! sneak#to(op, input, inputlen, count, register, repeatmotion, reverse, incl
 
   " Highlight match under cursor
   "   - not appropriate for exclusive motions: the cursor is next to the match
-  if a:inclusive != 0 && matchlen > 1
+  if a:inclusive != 0 && matchlen > 1 && !is_v
     let w:sneak_cur_hl = matchadd('SneakCurrent', '\%#.\{'.matchlen.'}')
   endif
 
