@@ -219,7 +219,7 @@ func! sneak#to(op, input, inputlen, count, register, repeatmotion, reverse, incl
         \ (s.prefix).(s.match_pattern).(s.search).'\|'.curln_pattern.(s.search))
 
   let matchlen = sneak#util#strlen(a:input)
-  if matchlen > 1
+  if matchlen > 1 && !is_v
     let w:sneak_cur_hl = matchadd('SneakCurrent', '\%#.\{'.matchlen.'}')
   endif
 
